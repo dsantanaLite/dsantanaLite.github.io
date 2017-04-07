@@ -1,0 +1,19 @@
+
+body{
+
+	background-color:#FFF0F5 ;
+
+}
+
+p{
+	text-align: center;
+	font-size: 25pt;
+}
+
+a{
+	position:fixed;
+	bottom:20%;
+	right:48%;
+	font-size: 20pt;
+	align-content: center;
+}
