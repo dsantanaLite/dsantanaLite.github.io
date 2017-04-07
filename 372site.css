@@ -11,7 +11,7 @@ footer{
 	bottom:5%;
 	width:99%;
     color: black;
-    font-size: 22pt;
+    font-size: 20pt;
     text-align: center;
     background-color: lightblue;
 }
@@ -28,7 +28,7 @@ ul {
 li a {
     display: block;
     color: black;
-    font-size: 24pt;
+    font-size: 20pt;
     font-family: sans-serif;
     padding: 8px 16px;
     text-decoration: none;
