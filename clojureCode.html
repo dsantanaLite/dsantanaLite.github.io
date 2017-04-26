@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<!--David Santana cs372site
+-->
+
+<html>
+	<head>
+		<title>Code</title>
+		<link rel="stylesheet" type="text/css" href="./372subpage.css">
+    <link rel="stylesheet" href="./default.css">
+    <script src="./highlight.pack.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+	</head>
+
+	<body id="codepage">
+		<p>
+			Clojure Nearest Neigbors
+		</p>
+
+		<pre><code>
+
+;--------------------------------------------------------------------
+;   Assignment: Project: Learn a New (to You) Language
+;      Authors: Jonathan Altamirano (jaltamirano@email.arizona.edu)
+;               David Santana       (dsantana@email.arizona.edu)
+;       Grader: Patrick Hickey / Andrea Padula
+;
+;       Course: CSc 372
+;   Instructor: L. McCann
+;     Due Date: May 3, 2017
+;
+;  Description: This program reads in a list of points from a file 
+;               titled 'input.txt'. The file should consist of three
+;               lines: one line of testing points, one line of the
+;               first training set of points, and one last line of 
+;               the second set of training points. Points take the
+;               form of two numbers separated by a comma. Points are
+;               separated by white space. Thus, the contents of the
+;               file should look something like this:
+;                  x1,y1 x2,y2
+;                  x3,y3 x4,y4
+;                  x5,y5 x6,y6
+;               The program then uses a k Nearest Neighbors algorithm
+;               (k = 3) to determine which group each testing point
+;               belongs to. Each testing point along with its
+;               corresponding group is printed to stdout.
+;
+;     Language: Clojure 1.8.0
+; Ex. Packages: None.
+;
+; Deficiencies: None.
+;--------------------------------------------------------------------
+
+(ns nearest-neighbors.core
+  (:require [clojure.string :as str]))
+
+(use 'clojure.java.io)
+
+; square
+;
+; Purpose: Calculates the square of a value x (x^2)
+;
+; Parameters:
+;   x -- The integer value to square
+(defn square [x]
+  (* x x))
+
+; distance
+;
+; Purpose: Calculates the distance between two points of the form
+;   [x y]. Returns the result as a floating point value.
+;
+; Parameters:
+;   point1 -- The first point [x1 y1]
+;   point2 -- The second point [x2 y2]
+(defn distance [point1 point2]
+  (let [[x1 y1] point1 [x2 y2] point2]
+    (java.lang.Math/sqrt (+ (square (- x1 x2)) (square (- y1 y2))))))
+
+; toNum
+;
+; Purpose: Converts the given string to an Integer.
+;
+; Parameters:
+;   str -- The string to be converted.
+(defn toNum [str]
+  (Integer/parseInt str))
+
+; convertToNumPair
+;
+; Purpose: Transforms a list of string representations of a point "x,y" to numerical
+;   representations [x y]. 
+;
+; Parameter:
+;   strPoints -- A list of string representation of points
+(defn convertToNumPair [strPoints]
+  (if (not= (count strPoints) 0)
+  (let [point (str/split (first strPoints) #",")]
+    (conj (convertToNumPair (rest strPoints)) [(toNum (get point 0)) (toNum (get point 1))]))))
+
+; makePoints
+;
+; Purpose: Creates a list of points of the form [[x1 y1] [x2 y2] etc.] from a string of
+;   points of the form "x1,y1 x2,y2, etc."
+;
+; Parameters:
+;   line -- A string of points separated by white space.
+(defn makePoints [line]
+  (let [strPoints (str/split line #" ")] ; Split the line into points
+    (convertToNumPair strPoints))) ; Convert points from strings to numbers
+
+; closest
+;
+; Purpose: Creates a list of distances from the given testPoint to each
+;   point in the given list of points.
+;
+; Parameters:
+;   points -- A list of points in the form of [x y]
+;   testPoint -- A single point in the form of [x y]
+(defn closest [points testPoint]
+  (sort (map (partial distance testPoint) points)))
+
+; compareDist
+;
+; Purpose:  Compares two vectors of distances until 3 comparisons
+;   have been made. If the first distance is smaller, 1 is added to the
+;   result. If the second distance is smaller, 1 is subtracted from the
+;   result. In the case of a tie, the result is not changed.
+;
+; Parameters:
+;   dist1 & dists1 -- A list of distances from a test point to the first training set
+;   dist2 & dists2 -- A list of distances from a test point to the second training set
+;   count          -- The number of comparisons made thus far.
+(defn compareDist [[dist1 & dists1] [dist2 & dists2] count] ; take first distance from each list
+  (cond
+    (or (nil? dist1) (nil? dist2) (>= count 3)) 0 ; Stop if 3 comparisons have been made or no more distances
+    (= dist1 dist2) (+ 0 (compareDist dists1 dists2 (+ count 2))) ; Tie; don't change result
+    (< dist1 dist2) (+ 1 (compareDist dists1 (conj dists2 dist2) (inc count))) 
+    :else           (- (compareDist (conj dists1 dist1) dists2 (inc count)) 1)))
+
+; closestGroup
+; 
+; Purpose:  Determines which training group the given point belongs to.
+;   A positive value indicates it belongs to group 1, a negative value 
+;   indicates it belongs to group 2, and a value of 0 indicates a tie.
+
+; Parameters:
+;   point -- A vector in the form of [x, y]
+(defn closestGroup [point]
+  (let [closest1 (closest trainingPoints1 point) closest2 (closest trainingPoints2 point)]
+    (compareDist (take 3 closest1) (take 3 closest2) 0)))
+
+
+; Main
+; Read in the lines from the input file
+(let [rdr (reader "input.txt")]
+  (def lines (line-seq rdr))) ; A sequence of lines in the file
+
+; Read in testing data points
+(def testingPoints (makePoints (first lines)))
+(def lines (rest lines))
+
+; Read in first set of training points
+(def trainingPoints1 (makePoints (first lines)))
+(def lines (rest lines))
+
+; Read in second set of training points
+(def trainingPoints2 (makePoints (first lines)))
+
+; Loop through each testing point and determine which group
+; it belongs to.
+(loop [[point & more] testingPoints]
+  (if-not (= point nil) ; Continue until no more testing points
+    (do 
+      (let [closestResult (closestGroup point)]
+        (cond
+          (< 0 closestResult) (println (str point ": group 1"))
+          (> 0 closestResult) (println (str point ": group 2"))
+          :else               (println (str point ": tie"))))
+      (recur more))
+    )
+  )
+    
+	</code></pre>
+
+		<a href='index.html'>Home</a>
+
+	</body>
+</html>

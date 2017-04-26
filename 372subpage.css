@@ -12,8 +12,12 @@ p{
 
 a{
 	position:fixed;
-	bottom:20%;
+	bottom:10%;
 	right:48%;
 	font-size: 20pt;
 	align-content: center;
+}
+
+#codepage{
+	font-size: 12pt;
 }
