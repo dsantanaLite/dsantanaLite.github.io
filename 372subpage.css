@@ -5,12 +5,35 @@ body{
 
 }
 
-p{
-	text-align: center;
-	font-size: 25pt;
+p,ul{
+	font-size: 20pt;
 }
 
-a{
+.textbox{
+	margin:auto;
+	position:fixed;
+	width: 80%;
+	left:0;
+	right:0;
+	background-color: #FFFAFA; 
+	padding: 30px;
+}
+
+
+ul{
+	list-style-position: inside;
+	text-align: left;
+}
+
+
+header{
+	text-align: center;
+	color:white;
+	font-size: 40pt;
+	background-color: DarkBlue;
+}
+
+.homebutton{
 	position:fixed;
 	bottom:10%;
 	right:48%;
