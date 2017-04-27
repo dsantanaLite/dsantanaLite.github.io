@@ -15,10 +15,13 @@ p,ul{
 	width: 80%;
 	left:0;
 	right:0;
-	background-color: #FFFAFA; 
+	background-color: #FFFAFA;
 	padding: 30px;
 }
 
+h1{
+	margin:50px;
+}
 
 ul{
 	list-style-position: inside;
