@@ -6,12 +6,11 @@ body{
 }
 
 p,ul{
-	font-size: 20pt;
+	font-size: 16pt;
 }
 
 .textbox{
 	margin:auto;
-	position:fixed;
 	width: 80%;
 	left:0;
 	right:0;
@@ -38,12 +37,15 @@ header{
 
 .homebutton{
 	position:fixed;
-	bottom:10%;
-	right:48%;
-	font-size: 20pt;
+	bottom:5%;
+	font-size: 16pt;
 	align-content: center;
 }
 
 #codepage{
 	font-size: 12pt;
+}
+
+pre{
+	margin-left: 100px;
 }
