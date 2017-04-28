@@ -1,7 +1,7 @@
 
 body{
 
-	background-color:#FFF0F5 ;
+	background-color:#96cb6f ;
 
 }
 
@@ -51,8 +51,9 @@ ul{
 header{
 	text-align: center;
 	color:white;
+	text-shadow: 2px 2px 1px Black;
 	font-size: 40pt;
-	background-color: DarkBlue;
+	background-color: #6f96cb;
 }
 
 .homebutton{

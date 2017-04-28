@@ -3,7 +3,9 @@ header {
     color: white;
     font-size: 70pt;
     text-align: center;
-    background-color: DarkBlue;
+    text-shadow: 2px 2px 2px Black;
+    background-color: #6f96cb;
+    border-radius: 25px;
 }
 
 img{
@@ -18,7 +20,7 @@ ul {
   margin-right: 10%;
   list-style-type: none;
 	padding:0;
-    background-color: lightgray;
+    background-color: #bfdfa7;
     border-style: solid;
     border-width: 1px;
     text-align:center;
@@ -34,10 +36,10 @@ li a {
 }
 
 li a:hover {
-    background-color: DarkBlue;
-    color: white;
+    border-style: dashed;
+    border-width: 2px;
 }
 
 body{
-	background-color: FloralWhite;
+	background-color: #96cb6f;
 }
