@@ -17,11 +17,32 @@
 
 		<p>
 			<ul>
-				<li>Language Paradigm</li>
+				<li><h3>Paradigm</h3></li>
 
-				<li>Efficiency</li>
-				<li>JVM</li>
+					<p>Clojure is primarily a Functional language, but also has many characteristics which make it more general.
+						<ul class='innerlist'>
+							<li>Vars can be created which refer to mutable storage, however Clojure ensures safe use of Vars using threading which isolates them.</li>
+							<li>If shared mutable storage is needed, Clojure uses a software transaction memory system to ensure safe use in that case as well. </li>
+							<li>Clojure uses First-Class functions, which can be stored in Vars and passed to other functions.</li>
+							<li>Although there is a loop construct, it is not iterative, recursion is used to evaluate.</li>
+						</ul>
 
+				<li><h3>Efficiency</h3></li>
+					<ul class='innerlist'>
+						<li>Clojure uses lazy evaluation in many functions and also has a lazy-seq macro, which allows the programmer to create their own functions that they want to evaluate 'lazily'.</li>
+						<li>Support for polymorphism through <a href='https://clojure.org/reference/multimethods'>multimethods</a>, allowing calls to a method to return different values based on some value of the argument.</li>
+						<li>Because clojure is hosted on the Java Virtual Machine, the programmer has access to the Java library. If a desired function is not available in Clojure, it might be found in Java.</li>
+					</ul>
+				<li><h3>Extensibility</h3></li>
+					<ul class='innerlist'>
+						<li>Clojure is homoiconic and supports <a href='https://clojure.org/reference/macros'>macros</a>, which allow the user to add new constructs. </li>
+						<li>Can use deftype and defrecord to create new data structures.</li>
+						<li>Because Clojure is an open source language, there is lots of oppurtunity for new features to be added.</li>
+					</ul>
+				<li><h3>Reliability</h3></li>
+					<ul class='innerlist'>
+						<li>Clojure is dynamic and uses dynamic typing, function definitions do not require type declarations for arguments or return value, which can be considered a disadvantage to reliability </li>
+					</ul>
 			</ul>
 		</p>
 		<a class='homebutton' href='index.html'>Home</a>

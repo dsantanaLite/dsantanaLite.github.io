@@ -9,6 +9,25 @@ p,ul{
 	font-size: 16pt;
 }
 
+ul{
+	margin-left: 20%;
+	margin-right: 20%;
+	list-style-type: square;
+}
+
+li{
+	list-style-position: outside;
+}
+
+.innerlist{
+	margin-left:1%;
+	margin-right: 1%;
+}
+
+.characteristics{
+	margin-left: 5%;
+}
+
 .textbox{
 	margin:auto;
 	width: 80%;
@@ -19,7 +38,7 @@ p,ul{
 }
 
 h1{
-	margin:50px;
+	margin-left:50px;
 }
 
 ul{
