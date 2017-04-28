@@ -17,6 +17,7 @@ ul{
 
 li{
 	list-style-position: outside;
+	padding-bottom: 10px;
 }
 
 .innerlist{
