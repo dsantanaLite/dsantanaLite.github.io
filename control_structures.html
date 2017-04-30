@@ -6,10 +6,48 @@
 	<head>
 		<title>Control Structures</title>
 		<link rel="stylesheet" type="text/css" href="./372subpage.css">
+		<link rel="stylesheet" href="./default.css">
+		<script src="./highlight.pack.js"></script>
+   		<script>hljs.initHighlightingOnLoad();</script>
 	</head>
 
 	<body>
 			<header>Control Structures</header>
+
+			<p class='textbox'>
+			Here is some clojure code from Nearest Neighbors main, which uses a few clojure control structures.<br>
+			loop/recur, if, do, and cond
+			</p>
+
+		<pre><code>
+		; Loop through each testing point and determine which group it belongs to.
+		(loop [[point & more] testingPoints]
+		  (if-not (= point nil) ; Continue until no more testing points
+		    (do 
+		      (let [closestResult (closestGroup point)]
+		        (cond
+		          (< 0 closestResult) (println (str point ": group 1"))
+		          (> 0 closestResult) (println (str point ": group 2"))
+		          :else               (println (str point ": tie"))))
+		      (recur more))
+		    )
+		  )
+  		</code></pre>
+
+		<ul class='textbox'>
+			<li>loop/recur</li>
+			<p> loop establishes the point of recursion at the top of a block.
+			recur evaluates the given expression in order, and rebinds the loop bindings, then returns to the loop point. </p>
+			<li>if - (if test then else)</li>
+			<p> In this case 'test' is (= point nil).
+			Clojure sees nil and False as logical false, and anything else as true.<br>
+			If the result of the test is true, 'then' is executed, otherwise 'else' is executed. In this case 'then' is the do function. </p>
+			<li>do</li>
+			<p>Do simply evaluates given expressions in order then returns the value of the last one. If no expression is provided returns nil.</p>
+			<li>cond</li>
+			Takes a set of test and expression pairs. Evaluating tests in order, if it finds one that is true it evaluates the corresponding expression and returns without checking other tests. 
+		</ul>
+
 		<a class='homebutton' href='index.html'>Home</a>
 
 	</body>

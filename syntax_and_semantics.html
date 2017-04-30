@@ -12,29 +12,31 @@
 
 		<hr>
 		<br>
+		<p>
+		<ul class='textbox'>
+			<li><h3>Syntax</h3></li>
+			<ul class='syntax'>
+					<li>
+						 Need for parenthesis around all forms.
+						 Decreases writability and gives greater chance of trivial mistakes. The convention of
+						 leaving closing parens on the same line can decrease readability as well. 
+					</li>
+					<li>Function definitions do not define argument type or return type</li>
+					<li>Code is generally very concise</li>
+			</ul>
 
-<ul class='textbox'>
-	<li><h3>Syntax</h3></li>
-	<ul>
-			<li>
-				 Need for parenthesis around all forms.
-				 Decreases writability and gives greater chance of trivial mistakes. Would prefer
-				 parenthesis allowed in these same places if desired but not required.
-			</li>
-			<li>Function definitions do not define argument type or return type</li>
-			<li>Code is generally very concise</li>
-	</ul>
-
-	<li><h3>Semantics</h3></li>
-	<ul>
-			<li>When creating local names using Let, they have Lexical Scope</li>
-			<li>
-			Constants can be declared when using def to create a Var, in which case you will add metadata to the Var using const.<br>This metadata can be added to different kinds of objects as well, and is stored as a map to the Var.
-			</li>
-			<li>Garbage collection is done by taking advatage of the JVM.</li>
-	</ul>
-</ul>
-
+			<li><h3>Semantics</h3></li>
+			<ul class='syntax'>
+					<li>When creating local names using Let, they have Lexical Scope</li>
+					<li>When binding Vars, they have dynamic scope, and can not be seen by any other threads.</li>
+					<li>
+					Constants can be declared when using def to create a Var, in which case you will add const metadata to the Var
+					<br>This metadata can be added to different kinds of objects as well, and is stored as a map to the Var.
+					</li>
+					<li>Garbage collection is done by taking advatage of the JVM.</li>
+			</ul>
+		</ul>
+	</p>
 	<body>
 		<a class='homebutton' href='index.html'>Home</a>
 	</body>

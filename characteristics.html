@@ -40,9 +40,14 @@
 						<li>Functions created with defn are stored in Vars, so they can be altered while the program is running.</li>
 						<li>Because Clojure is an open source language, there is lots of oppurtunity for new features to be added.</li>
 					</ul>
-				<li><h3>Reliability</h3></li>
+				<li><h3>Regularity</h3></li>
 					<ul class='innerlist'>
-						<li>Clojure is dynamic and uses dynamic typing, function definitions do not require type declarations for arguments or return value, which can be considered a disadvantage to reliability </li>
+						<li>
+						Clojure collections all support count, conj for adding to the collection.
+						The ISeq interface allows different data structures treat their elements as sequences. Calling the seq function returns a sequence that is relevant to that type of collection.
+						<br>
+						This is good for regularity, as one can expect certain behaviours for multiple data types to be the same based on this ISeq interface.
+						</li>
 					</ul>
 			</ul>
 		</p>
